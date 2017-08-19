@@ -1,5 +1,5 @@
 # udemy-react
-React code examples related to Udemy cources
+React code examples related to Udemy course https://www.udemy.com/react-redux
 
 install:
 
