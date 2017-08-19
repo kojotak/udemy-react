@@ -3,7 +3,11 @@ import React, {Component} from 'react';
 //for registering our app into DOM
 import ReactDOM from 'react-dom';
 
+//for searching youtube videos
 import YTSearch from 'youtube-api-search';
+
+//used for throttling
+import _ from 'lodash';
 
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
@@ -42,9 +46,14 @@ class App extends Component {
   }
 
   render(){
+    //fix throttling
+    const videoSearch = _.debounce((term)=>{
+      this.videoSearch(term)
+    }, 300);
+
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           videos={this.state.videos}
