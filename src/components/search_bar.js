@@ -16,7 +16,7 @@ class SearchBar extends Component {
 
   render(){
     return  (
-      <div>
+      <div className="search-bar">
         {/* //logging
             onChange={ (event) => console.log(event.target.value) }
         */}
