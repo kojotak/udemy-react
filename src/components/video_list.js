@@ -6,7 +6,11 @@ const VideoList = (props) => {
 
   //is actually an array...
   const videoItems = props.videos.map( (video) => {
-    return <VideoItem video={video} />;
+    //should provide key in order to avoid:
+    //  "Warning: Each child in an array or iterator should have a unique "key" prop.
+    //  Check the render method of `VideoList`.
+    //  See https://fb.me/react-warning-keys for more information."
+    return <VideoItem video={video} key={video.etag} />;
   });
 
   return (
