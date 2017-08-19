@@ -18,15 +18,21 @@ class App extends Component {
     super(props);
 
     //empty array of videos is initial state
-    this.state = { videos: [] };
+    this.state = {
+      videos: [] ,
+      selectedVideo: null
+    };
 
     //initialize youtube search component
     //will block for a while
     YTSearch(
-      {key:YOUTUBE_API_KEY, term: 'Game of thrones'},
+      {key:YOUTUBE_API_KEY, term: 'Game of Thrones'},
       (videos) => {
         //ES6 syntactic sugar, equas: {videos:videos}
-        this.setState({videos})
+        this.setState({
+          videos:videos,
+          selectedVideo:videos[0]
+        })
       }
     );
   }
@@ -35,8 +41,11 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          videos={this.state.videos}
+          onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
+          />
       </div>
     );
   }
