@@ -1,20 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 //for registering our app into DOM
 import ReactDOM from 'react-dom';
 
+import YTSearch from 'youtube-api-search';
+
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 
 //console.developers.google.com -> YouTube Data API v3
 const YOUTUBE_API_KEY='AIzaSyAwlImkLsu8MNDStYF_VLD6Avzt1VV1dZ8';
 
-//defines Component which renders HTML
-const App =  () => { //'fat arrow'same as: function()
-  return (
-    <div>
-      <SearchBar/>
-    </div>
-  )
+
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    //empty array of videos is initial state
+    this.state = { videos: [] };
+
+    //initialize youtube search component
+    //will block for a while
+    YTSearch(
+      {key:YOUTUBE_API_KEY, term: 'Game of thrones'},
+      (videos) => {
+        //ES6 syntactic sugar, equas: {videos:videos}
+        this.setState({videos})
+      }
+    );
+  }
+
+  render(){
+    return (
+      <div>
+        <SearchBar />
+        <VideoList videos={this.state.videos} />
+      </div>
+    );
+  }
 }
 
 //but this component have to be registered in the DOM
