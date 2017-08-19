@@ -23,10 +23,14 @@ class App extends Component {
       selectedVideo: null
     };
 
+    this.videoSearch('Game of Thrones');
+  }
+
+  videoSearch(term){
     //initialize youtube search component
     //will block for a while
     YTSearch(
-      {key:YOUTUBE_API_KEY, term: 'Game of Thrones'},
+      {key:YOUTUBE_API_KEY, term: term},
       (videos) => {
         //ES6 syntactic sugar, equas: {videos:videos}
         this.setState({
@@ -40,7 +44,7 @@ class App extends Component {
   render(){
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           videos={this.state.videos}
