@@ -1,6 +1,10 @@
 # udemy-react
 React code examples related to Udemy course https://www.udemy.com/react-redux
 
+examples:
+
+- videos: simple youtube video browser using React only
+
 install:
 
 - npm install
