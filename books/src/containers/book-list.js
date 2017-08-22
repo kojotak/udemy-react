@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 
-//connect function connects react to redux
+//connect function: connects react to redux
 import { connect } from 'react-redux';
+
+//conects actions to refux
+import { selectBook } from '../actions/index';
+import { bindActionCreators} from 'redux';
 
 //we choose BookList as a container for redux
 class BookList extends Component {
@@ -10,7 +14,9 @@ class BookList extends Component {
       return (
         <li
           key={book.title}
-          className="list-group-item">
+          className="list-group-item"
+          onClick={()=>this.props.selectBook(book)}
+          >
           {book.title}
         </li>
       );
@@ -33,5 +39,14 @@ function mapStateToProps(state){
   };
 }
 
-//from redux:
-export default connect(mapStateToProps)(BookList);
+//register action creator (handler)
+//whatever we return from here will show up as props inside BookLists
+function mapDispatchToProps(dispatch){
+  //whenever selecBook is called, the result should be passed to all reducers
+  return bindActionCreators({
+    selectBook: selectBook
+  }, dispatch)
+}
+
+//redux: connect mappings from state and from dispatched actions to BookList
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
