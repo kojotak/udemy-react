@@ -4,6 +4,7 @@ React code examples related to Udemy course https://www.udemy.com/react-redux
 examples:
 
 - videos: simple youtube video browser using React only
+- books: demonstration of react with redux
 
 install:
 
