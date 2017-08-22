@@ -8,6 +8,7 @@ import { selectBook } from '../actions/index';
 import { bindActionCreators} from 'redux';
 
 //we choose BookList as a container for redux
+//because only containers can access redux state
 class BookList extends Component {
   renderList(){
     return this.props.books.map(book => {
