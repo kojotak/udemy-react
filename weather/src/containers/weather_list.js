@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Chart from '../components/chart';
+import Minimap from '../components/minimap';
 
 class WeatherList extends Component {
 
@@ -14,9 +15,14 @@ class WeatherList extends Component {
     const press = cityData.list.map(weather=>weather.main.pressure);
     const hums = cityData.list.map(weather=>weather.main.humidity);
 
+    //const lon = cityData.city.coord.lon;
+    //const lat = cityData.city.coord.lat;
+    //in ES6 - destructuring:
+    const {lon, lat} = cityData.city.coord;
+
     return (
       <tr key={name}>
-        <td>{name}</td>
+        <td><Minimap lon={lon} lat={lat} /></td>
         <td><Chart data={temps} color="orange" units="C"/></td>
         <td><Chart data={press} color="green" units="hPa"/></td>
         <td><Chart data={hums} color="black" units="%"/></td>
