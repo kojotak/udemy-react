@@ -13,13 +13,22 @@ export default class SearchBar extends Component {
   }
 
   onInputChange(event){
-    //'this' is here some mystery context
+    //'this' is here some mystery context during callback execution
     this.setState({term: event.target.value});
+  }
+
+  onFormSubmit(event){
+    //every form is send after pressing enter
+    //and we don't need it... so we'll prevent it
+    event.preventDefault();
   }
 
   render(){
     return(
-      <form className="input-group">
+      <form
+        className="input-group"
+        onSubmit={this.onFormSubmit}
+        >
         <input
           placeholder="Get a five-day forecast in yout favourite cities"
           className="form-control"
