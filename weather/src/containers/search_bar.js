@@ -18,6 +18,7 @@ class SearchBar extends Component {
 
   onInputChange(event){
     //'this' is here some mystery context during callback execution
+    //we have to bind onInputChange in constructor
     this.setState({term: event.target.value});
   }
 

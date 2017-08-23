@@ -5,7 +5,7 @@ examples:
 
 - videos: simple youtube video browser using React only
 - books: demonstration of handling state with react-redux
-- weather: middleware demonstration with redux-promise
+- weather: middleware demonstration with redux-promise, axios
 
 install:
 

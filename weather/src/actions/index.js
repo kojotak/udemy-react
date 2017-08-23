@@ -12,10 +12,13 @@ export function fetchWeather(city){
   //ES6 syntactic sugar for formating strings
   const url = `${ROOT_URL}&q=${city},cs`;
 
+  //promise...
+  //at first (immediately), it returns the object with type promise...
+  //at second look (in middleware), it fetches the data and returns the data
+  //and all because of the promises, which the middleware is aware of
+  const request = axios.get(url);
   console.log('Request: ', request);
 
-  //promise
-  const request = axios.get(url);
   return {
     type: FETCH_WEATHER,
     payload: request
