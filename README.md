@@ -6,6 +6,7 @@ examples:
 - videos: simple youtube video browser using React only
 - books: demonstration of handling state with react-redux
 - weather: middleware demonstration with redux-promise, axios and react-sparklines
+- blog: react-router demonstration
 
 install:
 
