@@ -9,7 +9,7 @@ import { BrowserRouter, Route  } from 'react-router-dom';
 
 import reducers from './reducers';
 import PostIndex from './components/post_index';
-
+import promise from 'redux-promise';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
