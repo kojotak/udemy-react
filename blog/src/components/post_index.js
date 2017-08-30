@@ -11,16 +11,21 @@ class PostIndex extends Component {
   //it's React's lifecycle method
   //don't make typo in this function name!
   componentDidMount(){
+    console.log("componentDidMount ... " + JSON.stringify(this.props.posts));
+
+    //start fetching posts...
     this.props.fetchPosts();
+    console.log("componentDidMount ... " + JSON.stringify(this.props.posts) + " ... done");
   }
 
   renderPosts(){
-    _.map(this.props.posts, post=>{
+    return _.map(this.props.posts, post=>{
+        //console.log("render post: " + post.id);
         return (
-          <li className="list-group-item" key="{post.id}">
+          <li className="list-group-item" key={post.id}>
             {post.title}
           </li>
-        )
+        );
     });
   }
 
@@ -37,8 +42,10 @@ class PostIndex extends Component {
 }
 
 function mapStateToProps(state){
+  //console.log("mapStateToProps " + JSON.stringify(state.posts));
   return {posts : state.posts};
 }
 
 //ES6: equals to {fetchPosts:fetchPosts}
-export default connect(mapStateToProps, {fetchPosts})(PostIndex);
+//we are passing action creator here...
+export default connect(mapStateToProps, { fetchPosts })(PostIndex);
