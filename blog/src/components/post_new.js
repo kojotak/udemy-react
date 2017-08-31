@@ -30,7 +30,7 @@ class PostNew extends Component {
   }
 
   onSubmit(values){
-    console.log("submit: " + values);
+    console.log(values);
   }
 
   render(){
@@ -78,7 +78,7 @@ class PostNew extends Component {
 
 //values: everything the user has send with the formReducer
 const validate = values => {
-  console.log(values); // {title: "asdf", categories: "foo, bar", content: "test"}
+  //console.log(values); // {title: "asdf", categories: "foo, bar", content: "test"}
 
   const errors = {};
 
