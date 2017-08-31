@@ -8,8 +8,11 @@ class PostNew extends Component {
   //we need to pass some reference to field in order to connect event handlers
   //or to access passsed additional parameters such as label
   renderField(field){
+    //two level destructuring (destructuring on nested objects)
+    const { meta : {touched, error} }=field;
+    const cssClass = `form-group ${touched && error ? 'has-danger' : ''}`;
     return (
-      <div className="form-group">
+      <div className={cssClass}>
         <label>{field.label}</label>
         {/*
             instead of wiring all those event handlers like:
@@ -28,7 +31,9 @@ class PostNew extends Component {
             touched - flag for field, which has been focused and blured
             (we do not want to validate fields the user has not used yet)
         */}
-        {field.meta.touched ? field.meta.error : ''}
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
       </div>
     );
   }
