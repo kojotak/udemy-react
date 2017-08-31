@@ -23,6 +23,8 @@ class PostNew extends Component {
           className="form-control"
           {...field.input}
         />
+        {/* filled up from validation by redux-form */}
+        {field.meta.error}
       </div>
     );
   }
@@ -56,14 +58,42 @@ class PostNew extends Component {
             label="Post content"
             component={this.renderField}>
           </Field>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );
   }
 }
 
+//values: everything the user has send with the formReducer
+const validate = values => {
+  console.log(values); // {title: "asdf", categories: "foo, bar", content: "test"}
+
+  const errors = {};
+
+  if(!values.title){
+    //we are matching field names for validation error keys
+    errors.title = "Title can not be empty";
+  }else if(!values.title.length < 3){
+    errors.title = "Title is too short";
+  }
+
+  if(!values.categories){
+    errors.categories = "Categories can not be empty";
+  }
+
+  if(!values.content){
+    errors.content = "Post content can not be empty";
+  }
+
+  //empty errors => form is OK to submit (otherwise invalid)
+  return errors;
+}
+
 //we pass single argument - function - for form configuration:
 //form: unique identifier
+//validate: reference to validation function
 export default reduxForm({
+  validate,
   form: 'PostsNewForm'
 })(PostNew);
