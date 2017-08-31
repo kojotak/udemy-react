@@ -37,9 +37,9 @@ class PostNew extends Component {
         <h3>Create new post</h3>
         <form>
           {/*
-              the Field itself is just "a thing" which communicates with redux
-              component in field is function for displaying input field
-              label is our optional attribute passed to inner component
+              the Field itself is just "a thing" which communicates with redux;
+              component in field is function for displaying input field;
+              label is our optional attribute passed to inner component;
           */}
           <Field
             name="title"
@@ -47,8 +47,8 @@ class PostNew extends Component {
             component={this.renderField}>
           </Field>
           <Field
-            name="tags"
-            label="Tags"
+            name="categories"
+            label="Categories"
             component={this.renderField}>
           </Field>
           <Field
