@@ -8,11 +8,11 @@ class PostNew extends Component {
     return (
       <div>
         <div className="text-xs-right">
-          <Link className="btn btn-primary" to="/">
-            Home
-          </Link>
+          <Link className="btn btn-primary" to="/">Home</Link>
         </div>
-        Hello
+
+
+        Create new post
       </div>
     );
   }
