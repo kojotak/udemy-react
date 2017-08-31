@@ -23,8 +23,12 @@ class PostNew extends Component {
           className="form-control"
           {...field.input}
         />
-        {/* filled up from validation by redux-form */}
-        {field.meta.error}
+        {/*
+            filled up from validation by redux-form
+            touched - flag for field, which has been focused and blured
+            (we do not want to validate fields the user has not used yet)
+        */}
+        {field.meta.touched ? field.meta.error : ''}
       </div>
     );
   }
