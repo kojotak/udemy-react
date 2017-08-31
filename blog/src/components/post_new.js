@@ -29,7 +29,14 @@ class PostNew extends Component {
     );
   }
 
+  onSubmit(values){
+    console.log("submit: " + values);
+  }
+
   render(){
+    //vooodoo magic handle for form submit
+    const { handleSubmit} = this.props;
+
     return (
       <div>
         <div className="text-xs-right">
@@ -37,7 +44,11 @@ class PostNew extends Component {
         </div>
 
         <h3>Create new post</h3>
-        <form>
+        {/*
+            redux does not handle form submitting (to some backend server)
+            we have to handle it manually
+        */}
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           {/*
               the Field itself is just "a thing" which communicates with redux;
               component in field is function for displaying input field;
@@ -74,7 +85,7 @@ const validate = values => {
   if(!values.title){
     //we are matching field names for validation error keys
     errors.title = "Title can not be empty";
-  }else if(!values.title.length < 3){
+  } else if(values.title.length < 3){
     errors.title = "Title is too short";
   }
 
