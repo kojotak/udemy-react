@@ -48,10 +48,6 @@ class PostNew extends Component {
 
     return (
       <div>
-        <div className="text-xs-right">
-          <Link className="btn btn-primary" to="/">Home</Link>
-        </div>
-
         <h3>Create new post</h3>
         {/*
             redux does not handle form submitting (to some backend server)
@@ -79,6 +75,7 @@ class PostNew extends Component {
             component={this.renderField}>
           </Field>
           <button type="submit" className="btn btn-primary">Submit</button>
+          <Link className="btn btn-danger" to="/">Cancel</Link>
         </form>
       </div>
     );
