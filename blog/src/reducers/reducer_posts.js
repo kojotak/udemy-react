@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions';
 import _ from 'lodash';
 
 export default function(state = {}, action){
@@ -16,6 +16,11 @@ export default function(state = {}, action){
 
       //the lines above rewritten into ES6
       return { ...state, [action.payload.data.id] : action.payload.data };
+
+    case DELETE_POST:
+      //return all posts but the deleted one
+      //payload is deleted post id
+      return _.omit(state, action.payload);
     default:
       return state;
   }
