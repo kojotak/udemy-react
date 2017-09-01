@@ -41,7 +41,12 @@ class PostNew extends Component {
 
   onSubmit(values){
     //createPost action creator have to be 'connected'
-    this.props.createPost(values);
+    this.props.createPost(values, () => {
+
+      //callback for navigation after successful submit
+      //this has the same effect as clicking a Link
+      this.props.history.push('/');
+    });
   }
 
   render(){

@@ -17,10 +17,11 @@ export function fetchPosts(){
   }
 }
 
-export function createPost(values){
+//callback - what to do after successfull submit`
+export function createPost(values, callback ){
   const url = `${ROOT_URL}/posts${API_KEY}`;
   console.log("posting " + url);
-  const request = axios.post(url, values);
+  const request = axios.post(url, values).then( ()=>callback() );
   //we are returning promise
   return {
     type: CREATE_POSTS,
