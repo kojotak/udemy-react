@@ -5,10 +5,12 @@ import { fetchPost } from '../actions';
 
 class ShowPost extends Component {
   componentDidMount(){
-    //access id from the url using destructuring
-    const {id} = this.props.match.params;
-
-    this.props.fetchPost(id);
+    //fetch post only if know the id
+    if(!this.props.post){
+      //access id from the url using destructuring
+      const {id} = this.props.match.params;
+      this.props.fetchPost(id);
+    }
   }
 
   render(){
