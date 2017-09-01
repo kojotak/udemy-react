@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { createPost } from '../actions';
 
 class PostNew extends Component {
 
@@ -39,7 +40,8 @@ class PostNew extends Component {
   }
 
   onSubmit(values){
-    console.log(values);
+    //createPost action creator have to be 'connected'
+    this.props.createPost(values);
   }
 
   render(){
@@ -113,4 +115,11 @@ const validate = values => {
 export default reduxForm({
   validate,
   form: 'PostsNewForm'
-})(PostNew);
+})(
+  connect(null, {createPost})(PostNew)
+  /*
+    without createPost connector, we'll pass just:
+    PostNew
+    but we need to connect the reduxForm as well as actionCreator
+   */
+);
