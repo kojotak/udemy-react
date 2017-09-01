@@ -12,11 +12,11 @@ class PostIndex extends Component {
   //it's React's lifecycle method
   //don't make typo in this function name!
   componentDidMount(){
-    console.log("componentDidMount ... " + JSON.stringify(this.props.posts));
+    //console.log("componentDidMount ... " + JSON.stringify(this.props.posts));
 
     //start fetching posts...
     this.props.fetchPosts();
-    console.log("componentDidMount ... " + JSON.stringify(this.props.posts) + " ... done");
+    //console.log("componentDidMount ... " + JSON.stringify(this.props.posts) + " ... done");
   }
 
   renderPosts(){
