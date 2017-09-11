@@ -26,3 +26,7 @@ install:
 for installing additional libraries, use npm install with save option, for example:
 
 - npm install --save lodash
+
+starting node.js server (for users example):
+
+- node server.js
