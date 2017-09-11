@@ -7,6 +7,7 @@ examples:
 - books: demonstration of handling state with react-redux
 - weather: middleware demonstration with redux-promise, axios and react-sparklines
 - blog: small app demonstration using axios, redux-promise, react-router and redux-form
+- users: first app with graphql and express
 
 notes from rallycoding:
 
