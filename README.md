@@ -7,7 +7,7 @@ examples:
 - books: demonstration of handling state with react-redux
 - weather: middleware demonstration with redux-promise, axios and react-sparklines
 - blog: small app demonstration using axios, redux-promise, react-router and redux-form
-- users: first app with graphql and express
+- users: first app with graphql and express (external DB is simulated using json-server with provided db.json)
 
 notes from rallycoding:
 
@@ -30,3 +30,9 @@ for installing additional libraries, use npm install with save option, for examp
 starting node.js server (for users example):
 
 - node server.js
+
+to start json-server (as defined in package.json) use:
+
+- npm run json:server
+
+and than check the http://localhost:3000/users
