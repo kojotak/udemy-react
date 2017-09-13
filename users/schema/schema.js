@@ -1,7 +1,7 @@
 //to fix error: "GraphQL middleware options must contain a schema."
 
 const graphql = require('graphql');
-const _ = require('lodash');
+const axios = require('axios');
 
 //destructuralize a couple of properties...
 const {
@@ -10,11 +10,6 @@ const {
     GraphQLInt,
     GraphQLSchema
 } = graphql;
-
-const users = [
-  { id: '23', firstName : 'Bill', age: '20'},
-  { id: '42', firstName : 'John', age: '23'}
-];
 
 //describes our types
 //capitalize the name of user type as a convention
@@ -38,7 +33,10 @@ const RootQuery = new GraphQLObjectType({
         //callback for fetching data
         //parentValue - ignore
         //args - all arguments passed into query
-        return _.find(users, {id: args.id });
+
+        return axios.get(`http://localhost:3000/users/${args.id}`)
+          //.then( response=>console.log(response)) // {data: {firstName:...}}
+          .then(resp=>resp.data);//extract data wrapped by axios response
       }
     }
   }
