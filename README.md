@@ -7,7 +7,10 @@ examples:
 - books: demonstration of handling state with react-redux
 - weather: middleware demonstration with redux-promise, axios and react-sparklines
 - blog: small app demonstration using axios, redux-promise, react-router and redux-form
-- users: first app with graphql and express (external DB is simulated using json-server with provided db.json)
+- users: first app with graphql
+-- express: node.js backend server hosting graphiql
+-- json-server: simulates external data source by serving json file (see json:server in package.json)
+-- nodemon: watches and reloades source files (see dev in package.json)
 
 notes from rallycoding:
 
