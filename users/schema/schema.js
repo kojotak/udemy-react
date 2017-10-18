@@ -8,23 +8,35 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLList
 } = graphql;
 
 const CompanyType = new GraphQLObjectType({
     name: 'Company',
-    fields: {
+
+    //the following arrow function solves curcilar dependency with UserType,
+    //which is declared later
+    fields: ()=>({
       id: { type: GraphQLString},
       name: { type: GraphQLString},
-      description: { type: GraphQLString}
-    }
+      description: { type: GraphQLString},
+      users: {
+        //there are many users for one company
+        type: new GraphQLList(UserType),
+        resolve(parentValue, args) {
+          return axios.get(`http://localhost:3000/companies/${parentValue.id}/users`)
+            .then(res => res.data);
+        }
+      }
+    })
 });
 
 //describes our types
 //capitalize the name of user type as a convention
 const UserType = new GraphQLObjectType({
   name: 'User',
-  fields: {
+  fields: ()=>({
     id: { type: GraphQLString},
     firstName: { type: GraphQLString},
     age: { type: GraphQLInt},
@@ -35,7 +47,7 @@ const UserType = new GraphQLObjectType({
            .then(res => res.data);
       }
     }
-  }
+  })
 });
 
 //where to start querying int our graph of objects
@@ -59,6 +71,7 @@ const RootQuery = new GraphQLObjectType({
       type: CompanyType,
       args: {id: {type: GraphQLString }},
       resolve(parentValue, args){
+          //resolve function represents one oriented edge in graph of objects
           return axios.get(`http://localhost:3000/companies/${args.id}`)
           .then(resp=>resp.data);
       }
