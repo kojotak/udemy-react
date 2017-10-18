@@ -80,6 +80,14 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
+//GraphiQL query to create new user:
+//mutation {
+//  addUser(firstName:"Tom", age:35){
+//    id
+//    firstName
+//    age
+//  }
+//}
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
@@ -94,6 +102,16 @@ const mutation = new GraphQLObjectType({
         return axios.post(`http://localhost:3000/users`,
           { firstName, age })
         .then(resp=>resp.data);
+      }
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parentValue, { id }) {
+        return axios.delete(`http://localhost:3000/users/${id}`)
+          .then(res => res.data);
       }
     }
   }
